@@ -257,6 +257,12 @@ class _ExtendedNestedScrollPosition extends _NestedScrollPosition {
           maxScrollExtent - coordinator.pinnedHeaderSliverHeightBuilder!();
       maxScrollExtent = math.max(0.0, maxScrollExtent);
     }
+
+    ///新增部分，issue: https://github.com/fluttercandies/extended_nested_scroll_view/issues/91
+    if (debugLabel == 'inner' && coordinator.pinnedHeaderSliverHeightBuilder != null) {
+      maxScrollExtent = math.max(maxScrollExtent, 0.1);
+    }
+
     return super.applyContentDimensions(minScrollExtent, maxScrollExtent);
   }
 
